@@ -4,13 +4,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
-import { trigger } from '@angular/animations';
+import { state, style, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
   styleUrls: ['./lista-tarefas.component.css'],
-  animations: [trigger('highlightedState', [])]
+  animations: [trigger('highlightedState', [
+    state('default', style({
+      border: '2px solid #b2b6ff'
+    })),
+    state('highlighted', style({
+      border: '4px solid #b2b6ff'
+    }))
+  ])]
 })
 export class ListaTarefasComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
