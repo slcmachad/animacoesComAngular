@@ -18,10 +18,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       border: '4px solid #b2b6ff',
       filter: 'brightness(92%)'
     })),
-    transition('default => highlighted', [style({
-      transform: 'scale(1.02)'
-    })]),
-    animate(200)
+    transition('default => highlighted', [
+      animate('200ms ease-in-out',style({
+        transform: 'scale(1.02)'
+      })),
+      animate(200)
+    ]),
   ])]
 })
 export class ListaTarefasComponent implements OnInit {
