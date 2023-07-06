@@ -15,3 +15,20 @@ export const highlightedStateTrigger = trigger('highlightedState', [
     animate(200)
   ]),
 ])
+
+export const shownStateTrigger = trigger('shownState', [
+  state('notShown', style({
+
+  })),
+  state('shown', style({
+
+  })),
+  transition('notShoun => shoun', [
+    style({
+      opacity: 0
+    }),
+    animate(300, style({
+      opacity: 1
+    }))
+  ])
+])
