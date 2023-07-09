@@ -1,13 +1,6 @@
 {
   "tarefas": [
     {
-      "id": 1,
-      "descricao": "Ir ao supermercado",
-      "categoria": "Casa",
-      "statusFinalizado": true,
-      "prioridade": "Baixa"
-    },
-    {
       "id": 2,
       "descricao": "Estudar sobre acessibilidade",
       "categoria": "Trabalho",
@@ -18,7 +11,7 @@
       "id": 4,
       "descricao": "Preencher formulário de inscrição",
       "categoria": "Estudos",
-      "statusFinalizado": false,
+      "statusFinalizado": true,
       "prioridade": "Normal"
     },
     {
