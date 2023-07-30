@@ -68,6 +68,10 @@
     <img src="assets/imagens/ilustracao-Tarefas.png"
         alt="Ilustração de um ambiente com mesa, computador, quadro e um vaso com planta">
   </div>
+  <div class="busca">
+    <p class="ff-prompt">Procurando o que fazer?</p>
+    <input type="search" id="campo-busca" placeholder="busque por uma tarefa">
+  </div>
   <div *ngIf="listaTarefas.length > 0, else semTarefas">
     <div
       class="lista-tarefas card-{{ tarefa.categoria }}"
