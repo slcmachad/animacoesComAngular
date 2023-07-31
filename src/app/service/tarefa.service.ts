@@ -35,14 +35,16 @@ export class TarefaService {
     });
   }
 
-  editar(tarefa: Tarefa): void {
+  editar(tarefa: Tarefa, atualizarSubject: boolean): void {
     const url = `${this.API}/${tarefa.id}`;
     this.http.put<Tarefa>(url, tarefa).subscribe(tarefaEditada => {
-      const tarefas = this.tarefasSubject.getValue();
-      const index = tarefas.findIndex(tarefa => tarefa.id === tarefaEditada.id)
-      if(index !== -1){
-        tarefas[index] = tarefaEditada
-        this.tarefasSubject.next(tarefas)
+      if(atualizarSubject){
+        const tarefas = this.tarefasSubject.getValue();
+        const index = tarefas.findIndex(tarefa => tarefa.id === tarefaEditada.id)
+        if(index !== -1){
+          tarefas[index] = tarefaEditada
+          this.tarefasSubject.next(tarefas)
+        }
       }
     });
   }
@@ -66,6 +68,6 @@ export class TarefaService {
 
   atualizarStatusTarefa(tarefa: Tarefa): void {
     tarefa.statusFinalizado = !tarefa.statusFinalizado;
-    this.editar(tarefa);
+    this.editar(tarefa, false);
   }
 }
