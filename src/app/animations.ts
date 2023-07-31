@@ -120,3 +120,11 @@ export const flyInOutTrigger =
       ])
     ])
   ])
+
+  export const shakeTrigger = trigger('shakeAnimation', [
+    transition('* => *', [
+      query('input, select', [
+        animate('0.5s', style({border: '4px solid red'}))
+      ])
+    ])
+  ])
