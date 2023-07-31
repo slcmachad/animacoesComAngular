@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
-import { AppRouteReuseStrategy } from './app-route-reuse-strategy'
+import { RouterModule, Routes } from '@angular/router';
 
 import { ListaTarefasComponent } from './lista-tarefas/lista-tarefas.component';
 
@@ -8,26 +7,18 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'listaTarefas',
-    pathMatch: 'full',
-    data: {
-      reuseComponent: true
-    }
+    pathMatch: 'full'
   },
   {
     path: 'listaTarefas',
-    component: ListaTarefasComponent,
-    data: {
-      reuseComponent: true
-    }
+    component: ListaTarefasComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [
-    {provide: RouteReuseStrategy, useClass: AppRouteReuseStrategy}
-  ],
+
  })
 export class AppRoutingModule { }
 
