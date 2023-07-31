@@ -47,9 +47,16 @@ export class TarefaService {
     });
   }
 
-  excluir(id: number): Observable<Tarefa> {
+  excluir(id: number): void {
     const url = `${this.API}/${id}`;
-    return this.http.delete<Tarefa>(url);
+    this.http.delete<Tarefa>(url).subscribe(() => {
+      const tarefas = this.tarefasSubject.getValue();
+      const index = tarefas.findIndex(tarefa => tarefa.id === id)
+      if(index !== -1){
+        tarefas.splice(index, 1)
+        this.tarefasSubject.next(tarefas)
+      }
+    });
   }
 
   buscarPorId(id: number): Observable<Tarefa> {
