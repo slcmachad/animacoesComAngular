@@ -35,9 +35,16 @@ export class TarefaService {
     });
   }
 
-  editar(tarefa: Tarefa): Observable<Tarefa> {
+  editar(tarefa: Tarefa): void {
     const url = `${this.API}/${tarefa.id}`;
-    return this.http.put<Tarefa>(url, tarefa);
+    this.http.put<Tarefa>(url, tarefa).subscribe(tarefaEditada => {
+      const tarefas = this.tarefasSubject.getValue();
+      const index = tarefas.findIndex(tarefa => tarefa.id === tarefaEditada.id)
+      if(index !== -1){
+        tarefas[index] = tarefaEditada
+        this.tarefasSubject.next(tarefas)
+      }
+    });
   }
 
   excluir(id: number): Observable<Tarefa> {
