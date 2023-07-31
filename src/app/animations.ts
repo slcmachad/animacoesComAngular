@@ -134,6 +134,6 @@ export const flyInOutTrigger =
           style({transform: 'translateX(-10px)'}),
           style({transform: 'translateX(0)'}),
         ]))
-      ])
+      ],{optional: true})
     ])
   ])
