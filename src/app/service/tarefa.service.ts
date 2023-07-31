@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Tarefa } from '../interface/tarefa';
 
@@ -9,6 +9,9 @@ import { Tarefa } from '../interface/tarefa';
 })
 export class TarefaService {
   private readonly API = 'http://localhost:3000/tarefas';
+  private tarefasSubject = new BehaviorSubject<Tarefa[]>([]);
+  tarefas$ = this.tarefasSubject.asObservable();
+
   constructor(private http: HttpClient) {}
 
   listar(categoria: string): Observable<Tarefa[]> {
