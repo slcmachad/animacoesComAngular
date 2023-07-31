@@ -64,8 +64,8 @@ export class TarefaService {
     return this.http.get<Tarefa>(url);
   }
 
-  atualizarStatusTarefa(tarefa: Tarefa): Observable<Tarefa> {
+  atualizarStatusTarefa(tarefa: Tarefa): void {
     tarefa.statusFinalizado = !tarefa.statusFinalizado;
-    return this.editar(tarefa);
+    this.editar(tarefa);
   }
 }
