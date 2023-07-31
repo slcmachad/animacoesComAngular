@@ -14,15 +14,17 @@ export class TarefaService {
 
   constructor(private http: HttpClient) {}
 
-  listar(categoria: string): Observable<Tarefa[]> {
+  listar(): void {
     let params = new HttpParams().appendAll({
       _sort: 'id',
       _order: 'desc',
     });
-    if (categoria) {
-      params = params.append('categoria', categoria);
-    }
-    return this.http.get<Tarefa[]>(this.API, { params });
+
+    this.http.get<Tarefa[]>(this.API, { params }).subscribe((tarefas) => {
+      let tarefasTemporarias = this.tarefasSubject.getValue()
+      tarefasTemporarias = tarefasTemporarias.concat(tarefas)
+      this.tarefasSubject.next(tarefasTemporarias)
+    });
   }
 
   criar(tarefa: Tarefa): Observable<Tarefa> {
